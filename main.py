@@ -14,15 +14,16 @@ def input_path():
     return pdf_path
 
 
-def read_pdf(pdf_path: str):
-    tabula.read_pdf(pdf_path, pages='all', output_path='temporary.json', output_format='json', encoding='utf-8', stream=True)
-    # read_pdf returns list of json object into file
-
-
-def read_json(json_path: str = 'temporary.json'):
-    with open(json_path, 'r', encoding='utf-8') as json_file:
-        json_data = json.load(json_file)
-    return json_data
+def read_file(type_file, path_file: str = 'temporary.json'):
+    if type_file == "pdf":
+        tabula.read_pdf(path_file, pages='all', output_path='temporary.json', output_format='json', encoding='utf-8', stream=True)
+        # read_pdf returns list of json object into file
+    elif type_file == "json":
+        with open('temporary.json', 'r', encoding='utf-8') as json_file:
+            json_data = json.load(json_file)
+        return json_data
+    else:
+        print("Неизвестный тип файла")
 
 
 def clean_json(json_data: list, count_columns: int = 3):
@@ -85,8 +86,8 @@ def convert_jsondata_to_txtdata(json_data: list, mode: str = 'eng,tra-rus'):
 
 if __name__ == "__main__":
     pdf_path = input_path()
-    read_pdf(pdf_path)
-    json_data = read_json()
+    read_file('pdf', pdf_path)
+    json_data = read_file('json')
     json_data = clean_json(json_data)
     upload_file(json_data, type_file='json')
     txt_data = convert_jsondata_to_txtdata(json_data)
