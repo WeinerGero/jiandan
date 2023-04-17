@@ -1,0 +1,9 @@
+background: #121212
+icons_color: #bb86fc
+text_1: #ffffff
+text_2: #808080
+background_text: #202020
+text_3: #bb86fc
+green: #03dac6
+red: #cf6679
+blue: #3700b3
