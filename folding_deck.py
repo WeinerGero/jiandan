@@ -1,11 +1,11 @@
 import genanki
-import random
+from random import randrange
 
 
 class Anki():
     def __init__(self):
-        self.id_model = random.randrange(1 << 30, 1 << 31)
-        self.id_deck = random.randrange(1 << 30,1 << 31)
+        self.id_model = randrange(1 << 30, 1 << 31)
+        self.id_deck = randrange(1 << 30,1 << 31)
         # print(self.id_model)
         # print(self.id_deck)
 

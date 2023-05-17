@@ -1,13 +1,14 @@
 import webbrowser
-import sys
 from PyQt6.QtCore import Qt
-from PyQt6 import QtGui, QtWidgets, uic
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 from PyQt6.QtGui import QFont
+from PyQt6 import QtGui, uic
 
 from algorythm import main
 
+
 Form, Window = uic.loadUiType("interface.ui")
+
 
 class MainWindow(QMainWindow, Form):
     icon_filenames = ['iconizer-settings.svg', 'iconizer-alert-circle.svg', 'iconizer-help-circle.svg', 'iconizer-x.svg', 'iconizer-play.svg']
@@ -144,6 +145,9 @@ class MainWindow(QMainWindow, Form):
 
 
 if __name__ == '__main__':
+    import sys
+    from PyQt6 import QtWidgets
+
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
     window.show()
