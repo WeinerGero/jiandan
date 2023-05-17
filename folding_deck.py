@@ -2,7 +2,7 @@ import genanki
 import random
 
 
-class Algorithm():
+class Anki():
     def __init__(self):
         self.id_model = random.randrange(1 << 30, 1 << 31)
         self.id_deck = random.randrange(1 << 30,1 << 31)
@@ -60,13 +60,13 @@ class Algorithm():
 
 
 if __name__ == "__main__":
-    al = Algorithm()
-    al.create_model()
-    al.create_deck()
+    an = Anki()
+    an.create_model()
+    an.create_deck()
 
-    my_note = al.create_note(['English', 'Transcription', 'Russian', 'Sound', 'Image'])
-    al.add_note(my_note)
-    my_note = al.create_note(['Hello', '`hello', 'Привет', 'Sound', 'Image'])
-    al.add_note(my_note)
+    my_note = an.create_note(['English', 'Transcription', 'Russian', 'Sound', 'Image'])
+    an.add_note(my_note)
+    my_note = an.create_note(['Hello', '`hello', 'Привет', 'Sound', 'Image'])
+    an.add_note(my_note)
 
-    al.folding()
+    an.folding()

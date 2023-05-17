@@ -5,7 +5,7 @@ from PyQt6 import QtGui, QtWidgets, uic
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 from PyQt6.QtGui import QFont
 
-from main import main
+from algorythm import main
 
 Form, Window = uic.loadUiType("interface.ui")
 
@@ -56,7 +56,7 @@ class MainWindow(QMainWindow, Form):
         self.helpButton.clicked.connect(lambda: self.open_site("https://github.com/WeinerGero/jiandan"))
         self.exitButton.clicked.connect(self.exit)
         self.upload_choisePushButton.clicked.connect(lambda: self.choose_file(self.uploadTextEdit))
-        self.upload_choisePushButton_2.clicked.connect(lambda: self.choose_file(self.uploadTextEdit_2))
+        self.upload_choisePushButton_2.clicked.connect(lambda: self.choose_directory(self.uploadTextEdit_2))
         self.PushButtonStart.clicked.connect(self.start_reading)
         # self.uploadTextEdit.textChanged.connect(self.update_text)
 
@@ -87,8 +87,12 @@ class MainWindow(QMainWindow, Form):
         sys.exit()
 
     def choose_file(self, field):
-        path_filename = QFileDialog.getOpenFileName(self, 'Open File', '', '')
+        path_filename = QFileDialog.getOpenFileName(self, 'Choose File', '', '')
         field.setText(path_filename[0])
+
+    def choose_directory(self, field):
+        path_filename = QFileDialog.getExistingDirectory(self, 'Choose Directory', '')
+        field.setText(path_filename)
 
     def start_reading(self):
         input_path = self.uploadTextEdit.toPlainText()

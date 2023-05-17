@@ -2,7 +2,7 @@
 Для связки всех модулей
 """
 from read_pdf import Reader
-from folding_deck import Algorithm
+from folding_deck import Anki
 
 def input_path(input_path):
     # pdf_path = input("Укажите путь до PDF файла: ")
@@ -26,14 +26,14 @@ def main(input_path, output_path, name_output_file):
     data = reader.convert_json_to_list_values(json_data)
 
     # Algorithm part
-    al = Algorithm()
-    al.create_model()
-    al.create_deck(name_output_file)
+    an = Anki()
+    an.create_model()
+    an.create_deck(name_output_file)
     for row in data:
-        my_note = al.create_note(row)
-        al.add_note(my_note)
+        my_note = an.create_note(row)
+        an.add_note(my_note)
     try:
-        al.folding(output_path, name_output_file)
+        an.folding(output_path, name_output_file)
     except FileNotFoundError:
         return 2
 
