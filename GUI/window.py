@@ -28,9 +28,6 @@ class MainWindow(QMainWindow, Form):
         self.setupUi(self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
-        icon = QIcon("../jiandan.ico")
-        self.setWindowIcon(icon)
-
         for i, icon_filename in enumerate(self.icon_filenames):
             # Load the icon from a file
             icon = QtGui.QIcon(prefix + 'icons/' + icon_filename)

@@ -591,3 +591,9 @@ F
 GUI/interface.ui,0\8\08f30485f416d0ab752b57c86ad9552162f406e0
 K
 GUI/icons/iconizer-play.svg,4\d\4d250f3a622909f16b88cb822ea6de745a3c3ae9
+<
+algorythm.py,3\3\33dcd3d003eaa462a4bd764e54ee2914ab5c5b08
+A
+GUI/resources.qrc,7\a\7a6d78b8fa2d0527e1b52b2d4d44043c1b097c97
+@
+lib/aqt/py.typed,f\e\fe23ff0c3c385bafd6f6770c451974e357d97a60
