@@ -1,13 +1,13 @@
-import sys
+from sys import argv, exit
 from GUI.window import MainWindow
 from PyQt6 import QtWidgets
 
 
 def main():
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication(argv)
     window = MainWindow()
     window.show()
-    sys.exit(app.exec())
+    exit(app.exec())
 
 
 if __name__ == '__main__':

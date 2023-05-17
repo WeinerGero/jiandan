@@ -1,9 +1,9 @@
 from sys import argv, exit
 from webbrowser import open_new
+from PyQt6 import QtGui, uic
+from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
-from PyQt6.QtGui import QFont
-from PyQt6 import QtGui, uic
 
 from algorythm import main
 
