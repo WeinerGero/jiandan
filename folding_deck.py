@@ -55,8 +55,8 @@ class Algorithm():
     def add_note(self, my_note):
         self.my_deck.add_note(my_note)
 
-    def folding(self):
-        genanki.Package(self.my_deck).write_to_file('output.apkg')
+    def folding(self, output_path: str = '', name_deck: str = 'My Deck'):
+        genanki.Package(self.my_deck).write_to_file(f'{output_path}/{name_deck}.apkg')
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/iconizer-play.svg</file>
     <file>icons/iconizer-x.svg</file>
     <file>icons/iconizer-help-circle.svg</file>
     <file>icons/iconizer-alert-circle.svg</file>

@@ -1,51 +1,79 @@
-import typing
-from main import main
-
-
+import webbrowser
 import sys
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import Qt
+from PyQt6 import QtCore, QtGui, QtWidgets, uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog
+from PyQt6.QtGui import QFont
+
+Form, Window = uic.loadUiType("GUI/interface.ui")
+
+class MainWindow(QMainWindow, Form):
+    icon_filenames = ['iconizer-settings.svg', 'iconizer-alert-circle.svg', 'iconizer-help-circle.svg', 'iconizer-x.svg', 'iconizer-play.svg']
+    buttons_names = ['settingButton', 'reportButton', 'helpButton', 'exitButton', 'PushButtonStart']
+    font = QFont()
+    font.setPointSize(16)
+    max_chars =60
+
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
+        self.setupUi(self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+
+        for i, icon_filename in enumerate(self.icon_filenames):
+            # Load the icon from a file
+            icon = QtGui.QIcon('GUI/icons/' + icon_filename)
+            # Find the widget by its object name
+            widget = getattr(self, self.buttons_names[i])
+            # Set the icon on the widget
+            widget.setIcon(icon)
+
+        self.add_functions()
+
+        self.uploadTextEdit.setFont(self.font)
+        self.uploadTextEdit.textChanged.connect(lambda: self.on_text_changed(self.uploadTextEdit))
+        self.uploadTextEdit.setPlaceholderText('Укажите путь до pdf файла')
+
+        self.uploadTextEdit_2.setFont(self.font)
+        self.uploadTextEdit_2.textChanged.connect(lambda: self.on_text_changed(self.uploadTextEdit_2))
+        self.uploadTextEdit_2.setPlaceholderText('Укажите папку')
+
+        self.uploadTextEdit_3.setFont(self.font)
+        self.uploadTextEdit_3.textChanged.connect(lambda: self.on_text_changed(self.uploadTextEdit_3))
+        self.uploadTextEdit_3.setPlaceholderText('Введите название')
+
+    def on_text_changed(self, field):
+        font = field.currentFont()
+        font.setPointSize(16)
+        field.setCurrentFont(font)
+
+    def add_functions(self):
+        self.settingButton.clicked.connect(self.open_setting)
+        self.reportButton.clicked.connect(lambda: self.open_site("https://github.com/WeinerGero/jiandan/issues"))
+        self.helpButton.clicked.connect(lambda: self.open_site("https://github.com/WeinerGero/jiandan"))
+        self.exitButton.clicked.connect(self.exit)
+        self.upload_choisePushButton.clicked.connect(lambda: self.choose_file(self.uploadTextEdit))
+        self.upload_choisePushButton_2.clicked.connect(lambda: self.choose_file(self.uploadTextEdit_2))
+        # self.uploadTextEdit.textChanged.connect(self.update_text)
+
+    def open_setting(self):
+        print("open setting")
+
+    def open_site(self, link):
+        webbrowser.open_new(link)
+
+    def exit(self):
+        sys.exit()
+
+    def choose_file(self, field):
+        text = QFileDialog.getOpenFileName(self, 'Open File', '', '')
+        if len(text[0]) >= 60:
+            # res[0] = f'...{res[0][:-50]}'
+            print(text[0])
+        field.setText(text[0])
 
 
-
-# Подкласс QMainWindow для настройки главного окна приложения
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        # setting title
-        self.setWindowTitle("Jiandan")
-
-        # setting geometry
-        self.setGeometry(100, 100, 600, 400)
-
-        # calling method
-        self.UiComponents()
-
-        # showing all the widgets
-        self.show()
-
-    def UiComponents(self):
-        # creating a push button
-        button = QPushButton("Выбрать", self)
-
-        # setting geometry of button
-        button.setGeometry(200, 150, 100, 30)
-
-        # adding action to a button
-        button.clicked.connect(self.choose_file)
-
-    def choose_file(self):
-        res = QFileDialog.getOpenFileName(window, 'Open File', '', '')
-        print(res)
-        main(res[0])
-
-
-# create pyqt5 app
-App = QApplication([])
-
-# create the instance of our Window
-window = MainWindow()
-
-# start the app
-sys.exit(App.exec())
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())

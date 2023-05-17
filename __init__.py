@@ -1,3 +1,3 @@
 import sys
 
-import main
+import GUI.window

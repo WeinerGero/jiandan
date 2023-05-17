@@ -3,20 +3,23 @@
 """
 from read_pdf import Reader
 from folding_deck import Algorithm
-from GUI import window
 
-def input_path(res):
+def input_path(input_path):
     # pdf_path = input("Укажите путь до PDF файла: ")
     # pdf_path = "006_Relationships.pdf"
-    pdf_path = res
+    pdf_path = input_path
     print(pdf_path)
     return pdf_path
 
-def main(res):
+def main(input_path, output_path, name_output_file):
     # Reader part
-    pdf_path = input_path(res)
-    reader = Reader(pdf_path)
-    reader.read_file('pdf')
+    reader = Reader(input_path)
+    try:
+        reader.read_file('pdf')
+    except FileNotFoundError:
+        return 0
+    except:
+        return 1
     json_data = reader.read_file('json')
     json_data = reader.clean_json(json_data)
     reader.upload_file(json_data, type_file='json')
@@ -25,14 +28,19 @@ def main(res):
     # Algorithm part
     al = Algorithm()
     al.create_model()
-    al.create_deck()
+    al.create_deck(name_output_file)
     for row in data:
         my_note = al.create_note(row)
         al.add_note(my_note)
-    al.folding()
+    try:
+        al.folding(output_path, name_output_file)
+    except FileNotFoundError:
+        return 2
 
     print("End!")
 
 
 if __name__ == "__main__":
-    main()
+    input_path = "006_Relationships.pdf"
+    output_path, name_output_file = '', ''
+    main(input_path, output_path, name_output_file)

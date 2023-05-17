@@ -113,7 +113,7 @@ class Reader():
 
 
 if __name__ == "__main__":
-    pdf_path = input_path()
+    pdf_path = '006_Relationships.pdf'
     read_file('pdf', pdf_path)
     json_data = read_file('json')
     json_data = clean_json(json_data)
