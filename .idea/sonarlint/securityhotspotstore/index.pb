@@ -587,8 +587,6 @@ E
 GUI/icons/archive.svg,f\6\f636d9e6644c28a24bd0cfd86433cfabf40f8e99
 F
 GUI/icons/aperture.svg,0\9\09b9a3189f50360e7c6d3110a44583a5fe8c8533
-A
-GUI/resources.qrc,7\a\7a6d78b8fa2d0527e1b52b2d4d44043c1b097c97
 @
 GUI/interface.ui,0\8\08f30485f416d0ab752b57c86ad9552162f406e0
 K

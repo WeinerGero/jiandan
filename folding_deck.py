@@ -1,4 +1,4 @@
-import genanki
+from genanki import Model, Note, Deck, Package
 from random import randrange
 
 
@@ -10,7 +10,7 @@ class Anki():
         # print(self.id_deck)
 
     def create_model(self, name_model: str = 'IKBFU HSLS English lessons'):
-        my_note_model = genanki.Model(
+        my_note_model = Model(
             self.id_model, # a unique ID for the model
             name_model, # the name of the model
             fields=[
@@ -39,14 +39,14 @@ class Anki():
         self.my_note_model = my_note_model
 
     def create_note(self, values: list):
-        my_note = genanki.Note(
+        my_note = Note(
             model=self.my_note_model,
             fields=values,
             )
         return my_note
 
     def create_deck(self, name_deck: str = 'My Deck'):
-        my_deck = genanki.Deck(
+        my_deck = Deck(
             self.id_deck, # a unique ID for the deck
             name_deck, # the name of the deck
         )
@@ -56,7 +56,7 @@ class Anki():
         self.my_deck.add_note(my_note)
 
     def folding(self, output_path: str = '', name_deck: str = 'My Deck'):
-        genanki.Package(self.my_deck).write_to_file(f'{output_path}/{name_deck}.apkg')
+        Package(self.my_deck).write_to_file(f'{output_path}/{name_deck}.apkg')
 
 
 if __name__ == "__main__":

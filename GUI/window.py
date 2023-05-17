@@ -1,5 +1,5 @@
-import sys
-import webbrowser
+from sys import argv, exit
+from webbrowser import open_new
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 from PyQt6.QtGui import QFont
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow, Form):
         self.settingButton.clicked.connect(self.open_setting)
         self.reportButton.clicked.connect(lambda: self.open_site("https://github.com/WeinerGero/jiandan/issues"))
         self.helpButton.clicked.connect(lambda: self.open_site("https://github.com/WeinerGero/jiandan"))
-        self.exitButton.clicked.connect(self.exit)
+        self.exitButton.clicked.connect(self.exit_app)
         self.upload_choisePushButton.clicked.connect(lambda: self.choose_file(self.uploadTextEdit))
         self.upload_choisePushButton_2.clicked.connect(lambda: self.choose_directory(self.uploadTextEdit_2))
         self.PushButtonStart.clicked.connect(self.start_reading)
@@ -88,13 +88,13 @@ class MainWindow(QMainWindow, Form):
         self.Error_textBrowser.setText(error_message)
 
     def open_site(self, link):
-        webbrowser.open_new(link)
+        open_new(link)
 
-    def exit(self):
-        sys.exit()
+    def exit_app(self):
+        exit()
 
     def choose_file(self, field):
-        path_filename = QFileDialog.getOpenFileName(self, 'Choose File', '', '')
+        path_filename = QFileDialog.getOpenFileName(self, 'Choose File', '', 'PDF Files (*.pdf)')
         field.setText(path_filename[0])
 
     def choose_directory(self, field):
@@ -153,7 +153,7 @@ class MainWindow(QMainWindow, Form):
 if __name__ == '__main__':
     from PyQt6 import QtWidgets
 
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication(argv)
     window = MainWindow()
     window.show()
-    sys.exit(app.exec())
+    exit(app.exec())

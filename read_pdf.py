@@ -1,7 +1,7 @@
 """
 python 3.11.2, sys 3.11.2, PyPDF2 3.0.1, py-anki 0.0.6, tabula 2.7.0, json
 """
-import json
+from json import dump, load
 import tabula
 
 
@@ -19,7 +19,7 @@ class Reader():
             # read_pdf returns list of json object into file
         elif type_file == "json":
             with open(self.json_temp_path, 'r', encoding='utf-8') as json_file:
-                json_data = json.load(json_file)
+                json_data = load(json_file)
             return json_data
         else:
             print("Неизвестный тип файла")
@@ -103,7 +103,7 @@ class Reader():
     def upload_file(self, data: list or str, type_file: str = 'txt', file_path: str = 'temporary'):
         if type_file == 'json':
             with open(f'{file_path}.json', 'w', encoding='utf-8') as file:
-                json.dump(data, file, ensure_ascii=False, indent=4)
+                dump(data, file, ensure_ascii=False, indent=4)
         elif type_file == 'txt':
             with open(f'{file_path}.txt', 'w', encoding='utf-8') as file:
                 file.write(data)
