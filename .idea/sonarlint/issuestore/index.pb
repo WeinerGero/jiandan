@@ -305,8 +305,6 @@ J
 GUI/icons/minus-square.svg,a\e\aea0d5d991af1f7e620d74646a2f2bd8d95432d7
 C
 GUI/icons/minus.svg,e\c\ec47d20b9cd7e44f0aa1ca1bdf827d055666c16c
-B
-GUI/Схема.txt,6\8\688358846f3533e1f34ce3d019c265fba016da61
 E
 GUI/icons/monitor.svg,b\8\b8744c67fd3f10c0cf2539afb9719cdcdafcfac7
 B
@@ -589,3 +587,9 @@ E
 GUI/icons/archive.svg,f\6\f636d9e6644c28a24bd0cfd86433cfabf40f8e99
 F
 GUI/icons/aperture.svg,0\9\09b9a3189f50360e7c6d3110a44583a5fe8c8533
+A
+GUI/resources.qrc,7\a\7a6d78b8fa2d0527e1b52b2d4d44043c1b097c97
+@
+GUI/interface.ui,0\8\08f30485f416d0ab752b57c86ad9552162f406e0
+K
+GUI/icons/iconizer-play.svg,4\d\4d250f3a622909f16b88cb822ea6de745a3c3ae9

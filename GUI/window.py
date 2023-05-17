@@ -1,3 +1,4 @@
+import sys
 import webbrowser
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
@@ -7,7 +8,12 @@ from PyQt6 import QtGui, uic
 from algorythm import main
 
 
-Form, Window = uic.loadUiType("interface.ui")
+if __name__ == '__main__':
+    prefix = ''
+    Form, Window = uic.loadUiType("interface.ui")
+else:
+    prefix = 'GUI/'
+    Form, Window = uic.loadUiType(prefix + "interface.ui")
 
 
 class MainWindow(QMainWindow, Form):
@@ -24,7 +30,7 @@ class MainWindow(QMainWindow, Form):
 
         for i, icon_filename in enumerate(self.icon_filenames):
             # Load the icon from a file
-            icon = QtGui.QIcon('icons/' + icon_filename)
+            icon = QtGui.QIcon(prefix + 'icons/' + icon_filename)
             # Find the widget by its object name
             widget = getattr(self, self.buttons_names[i])
             # Set the icon on the widget
@@ -145,7 +151,6 @@ class MainWindow(QMainWindow, Form):
 
 
 if __name__ == '__main__':
-    import sys
     from PyQt6 import QtWidgets
 
     app = QtWidgets.QApplication(sys.argv)
