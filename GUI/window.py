@@ -1,7 +1,7 @@
 from sys import argv, exit
 from webbrowser import open_new
 from PyQt6 import QtGui, uic
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
@@ -27,6 +27,9 @@ class MainWindow(QMainWindow, Form):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+
+        icon = QIcon("../jiandan.ico")
+        self.setWindowIcon(icon)
 
         for i, icon_filename in enumerate(self.icon_filenames):
             # Load the icon from a file

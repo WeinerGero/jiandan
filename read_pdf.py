@@ -3,6 +3,8 @@ python 3.11.2, sys 3.11.2, PyPDF2 3.0.1, py-anki 0.0.6, tabula 2.7.0, json
 """
 from json import dump, load
 from tabula import read_pdf
+import subprocess
+import win32con
 
 
 class Reader():
@@ -15,6 +17,12 @@ class Reader():
 
     def read_file(self, type_file):
         if type_file == "pdf":
+            info = subprocess.STARTUPINFO()
+            info.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            info.wShowWindow = win32con.SW_HIDE
+            subprocess.call(["java", "-jar", "tabula.jar", "your_arguments"], creationflags=subprocess.CREATE_NO_WINDOW,
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
             read_pdf(self.pdf_path, pages='all', output_path=self.json_temp_path, output_format='json', encoding='utf-8', stream=True)
             # read_pdf returns list of json object into file
         elif type_file == "json":
